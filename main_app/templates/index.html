@@ -3,4 +3,20 @@
 {% block content %}
 
 <h3>Welcome to Buzz Crowd App</h3>
+
+{% for post in posts %}
+<div class="card" style="width: 18rem;">
+    <img src="{{ post.image }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.content }}</h5>
+        <p>Posted by:
+          <strong><a href="/posts/{{ post.id }}" class="btn btn-primary"> {{ post.user }}</a></strong></p>
+          
+        </div>
+    </div>
+
+    
+    
+    {% endfor %}
+
     {% endblock %}
