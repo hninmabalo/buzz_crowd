@@ -16,13 +16,18 @@
 
 <body>
     {% for profile in profiles %}
-
+  
     <div class="container bootstrap snippets bootdey">
         <div class="col-md-9">
             <div class="row">
                 <div class="col-md-4 col-sm-5">
                     <div class="thumbnail">
+                      {% if profile.profile_image %}
                         <img src="{{ profile.profile_image.url }}" width="210px" alt="Profile Picture">
+                                            {% else %}
+                                             <img src="/media/blank_profile.png" width="210px" alt="Profile Picture">
+                                            {% endif %}
+                       
                     </div> <!-- /.thumbnail -->
                     <br>
                     <div class="list-group">

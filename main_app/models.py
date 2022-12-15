@@ -8,7 +8,7 @@ User = get_user_model()
 #profile models
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    id_user = models.IntegerField()
+    id_user = models.IntegerField(blank=True, null=True)
     nickname = models.CharField(max_length=50, blank=True, null=True)
     pronouns = models.TextField(blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
