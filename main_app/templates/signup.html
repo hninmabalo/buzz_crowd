@@ -28,7 +28,7 @@
 
                 <div class="flex items-center lg:justify-between justify-around">
 
-                  
+                    
                         <b><h1 style="font-size: 1.5rem;">Buzz Crowd</h1></b>
                     
 
@@ -48,15 +48,17 @@
                 <h1 class="lg:text-3xl text-xl font-semibold mb-6"> Sign Up</h1>
                 <!--<p class="mb-2 text-black text-lg"> Register to manage your account </p>-->
                 
-
                 <div>
                     <style>
                         h5{
                             color: red;
                         }
                     </style>
-                   
+                    {% for message in messages %}
+                    <h5>{{message}}</h5>
+                    {% endfor %}
                 </div>
+                
                 
                 
                 <form action="" method="POST">
@@ -69,7 +71,7 @@
                     
                     <button type="submit" class="bg-gradient-to-br from-blue-500 py-3 rounded-md text-white text-xl to-red-400 w-full">Sign Up</button>
                     <div class="text-center mt-5 space-x-2">
-                        <p class="text-base"> Do you have an account? <a href="/login"> Login </a></p>
+                        <p class="text-base"> Already have an account? <a href="/login"> Login </a></p>
                     </div>
                 </form>
 
