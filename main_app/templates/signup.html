@@ -16,7 +16,6 @@
 
 </head>
 
-
 <body class="bg-gray-100">
 
 
@@ -30,12 +29,12 @@
                 <div class="flex items-center lg:justify-between justify-around">
 
                   
-                       <b><h1 style="font-size: 1.5rem;">Buzz Crowd</h1></b>
-                   
+                        <b><h1 style="font-size: 1.5rem;">Buzz Crowd</h1></b>
+                    
 
                     <div class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm">
                         
-                        <a href="/signup/" class="bg-pink-500 pink-500 px-6 py-3 rounded-md shadow text-white">Signup</a>
+                        <a href="/login" class="bg-pink-500 pink-500 px-6 py-3 rounded-md shadow text-white">Login</a>
                     </div>
 
                 </div>
@@ -43,10 +42,12 @@
         </div>
 
         <!-- Content-->
+
         <div>
             <div class="lg:p-12 max-w-md max-w-xl lg:my-0 my-12 mx-auto p-6 space-y-">
-                <h1 class="lg:text-3xl text-xl font-semibold  mb-6"> Log in</h1>
-
+                <h1 class="lg:text-3xl text-xl font-semibold mb-6"> Sign Up</h1>
+                <!--<p class="mb-2 text-black text-lg"> Register to manage your account </p>-->
+                
 
                 <div>
                     <style>
@@ -54,18 +55,21 @@
                             color: red;
                         }
                     </style>
-                    
+                   
                 </div>
-
-
+                
+                
                 <form action="" method="POST">
                     {% csrf_token %}
-                    <input type="text" name="username" placeholder="Username" class="bg-gray-200 mb-2 shadow-none dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
-                    <input type="password" name="password" placeholder="Password" class="bg-gray-200 mb-2 shadow-none dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
                     
-                    <button type="submit" class="bg-gradient-to-br from-blue-500 py-3 rounded-md text-white text-xl to-red-400 w-full">Login</button>
+                    <input type="text" name="username" placeholder="Username" class="bg-gray-200 mb-2 shadow-none  dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
+                    <input type="email" name="email" placeholder="Email" class="bg-gray-200 mb-2 shadow-none  dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
+                    <input type="password" name="password" placeholder="Password" class="bg-gray-200 mb-2 shadow-none  dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
+                    <input type="password" name="password2" placeholder="Confirm Password" class="bg-gray-200 mb-2 shadow-none  dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
+                    
+                    <button type="submit" class="bg-gradient-to-br from-blue-500 py-3 rounded-md text-white text-xl to-red-400 w-full">Sign Up</button>
                     <div class="text-center mt-5 space-x-2">
-                        <p class="text-base"> New User? <a href="/signup/" class=""> Create a account </a></p>
+                        <p class="text-base"> Do you have an account? <a href="/login"> Login </a></p>
                     </div>
                 </form>
 

@@ -36,13 +36,13 @@ def profile(request, pk):
   profiles = list(Profile.objects.all())
   return render(request, 'profile.html', { 'profiles': profiles })
 
+def signup(request):
+  return render(request, 'signup.html')
+
 def login(request):
-  if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-  else:
-    return render(request, 'login.html')
+  return render(request, 'login.html')
 
 def logout(request):
   logout(request)
   return HttpResponseRedirect('/')
+
