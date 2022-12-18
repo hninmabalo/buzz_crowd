@@ -73,9 +73,24 @@ def signup(request):
 
 
 def login(request):
-    return render(request, 'login.html')
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = auth.authenticate(username=username, password=password)
+
+        if user is not None:
+          auth.login(request, user)
+          return HttpResponseRedirect('/')
+        else:
+          messages.info(request, 'Invalid User')
+          return HttpResponseRedirect('/login/')   
+
+    else:
+        return render(request, 'login.html')
 
 
 def logout(request):
-    logout(request)
-    return HttpResponseRedirect('/')
+    auth.logout(request)
+    return HttpResponseRedirect('/login/')

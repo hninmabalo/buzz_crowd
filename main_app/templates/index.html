@@ -31,6 +31,7 @@
                                 <b><h1 style="text-transform: uppercase;">Buzz Crowd</h1></b>
                             </a>
                         </div>
+                        
 
                         <!-- <div class="header_search"> -->
                             <input type="text" name="username" placeholder="Search for people..">&nbsp; &nbsp;
@@ -102,25 +103,30 @@
                                 </div>
     
                             </div>
-                            <div class="px-4 py-3 -mx-5 -mb-4 mt-5 border-t text-sm">
-                               Image 
-                            </div>
+                           
 
                      
                         </div>
                    
                         
                         <!-- profile -->
+                      
 
                         <a href="#">
                             <img src="{{user_profile.profile_imgae.url}}" class="header-avatar" alt="">
                         </a>
-                        <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
+                        <div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">More Info
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
                             
+                            <li><a href="logout">Logout</a></li>
+                          </ul>
                         </div>
-
                     </div>
                 </div>
+               
+
             </header>
 
             <div class="container m-auto">
@@ -234,6 +240,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
     integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
     crossorigin="anonymous"></script>
+    
 </body>
 
 </html>
