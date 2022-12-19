@@ -22,7 +22,7 @@ def index(request):
 def about(request):
     return render(request, 'about.html')
 
-
+@login_required(login_url='/login/')
 def create_post(request):
 
     if request.method == 'POST':
@@ -33,9 +33,9 @@ def create_post(request):
         new_post = Post.objects.create(user=user, image=image, content=content)
         new_post.save()
 
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/create/')
     else:
-        return HttpResponseRedirect('/')
+        return render(request, 'create.html')
 
 # @login_required
 def edit(request):
