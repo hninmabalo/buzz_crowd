@@ -37,10 +37,46 @@ def create_post(request):
     else:
         return HttpResponseRedirect('/')
 
+# @login_required
+def edit(request):
+
+  user_profile = Profile.objects.get(user=request.user)
+
+  if request.method == 'POST':
+
+    if request.FILES.get('image') == None:
+      image = user_profile.profile_image
+      pronouns = request.POST['pronouns']
+      bio = request.POST['bio']
+      location = request.POST['location']
+
+      user_profile.profile_image = image
+      user_profile.pronouns = pronouns
+      user_profile.bio = bio
+      user_profile.location = location
+      user_profile.save()
+
+    if request.FILES.get('image') != None:
+      image = request.FILES.get('image')
+      pronouns = request.POST['pronouns']
+      bio = request.POST['bio']
+      location = request.POST['location']
+
+      user_profile.profile_image = image
+      user_profile.pronouns = pronouns
+      user_profile.bio = bio
+      user_profile.location = location
+      user_profile.save()
+    
+    return HttpResponseRedirect('/edit/')
+
+
+  return render(request, 'edit.html', { user_profile: user_profile })
 
 def profile(request, pk):
     profiles = list(Profile.objects.all())
     return render(request, 'profile.html', {'profiles': profiles})
+
 
 
 def signup(request):
@@ -63,10 +99,13 @@ def signup(request):
                     username=username, email=email, password=password)
                 user.save()
 
+                user_login = auth.authenticate(username=username, password=password)
+                auth.login(request, user_login)
+
                 user_model = User.objects.get(username=username)
                 new_profile = Profile.objects.create(user=user_model, id_user=user_model.id)
                 new_profile.save()
-                return HttpResponseRedirect('/login/')
+                return HttpResponseRedirect('/edit/')
         else:
             messages.info(request, 'Password Does Not Match')
             return HttpResponseRedirect('/signup/')
