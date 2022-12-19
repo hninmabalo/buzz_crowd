@@ -11,12 +11,12 @@ from .models import Post, Profile
 @login_required(login_url='/login/')
 def index(request):
 
-    # user_object = User.objects.get(username=request.user.username)
-    # user_profile = Profile.objects.get(user=user_object)
+    user_object = User.objects.get(username=request.user.username)
+    user_profile = Profile.objects.get(user=user_object)
 
-    posts = list(Post.objects.all())
+    posts = Post.objects.all()
 
-    return render(request, 'index.html', {'posts': posts})
+    return render(request, 'index.html', { 'user_profile': user_profile, 'posts' : posts })
 
 
 def about(request):
@@ -33,7 +33,7 @@ def create_post(request):
         new_post = Post.objects.create(user=user, image=image, content=content)
         new_post.save()
 
-        return HttpResponseRedirect('/create/')
+        return HttpResponseRedirect('/')
     else:
         return render(request, 'create.html')
 
