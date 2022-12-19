@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User, auth
+from django.contrib.auth.decorators import login_required 
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
@@ -7,6 +8,7 @@ from .models import Post, Profile
 
 
 # Create your views here.
+@login_required(login_url='/login/')
 def index(request):
 
     # user_object = User.objects.get(username=request.user.username)
@@ -90,7 +92,7 @@ def login(request):
     else:
         return render(request, 'login.html')
 
-
+@login_required(login_url='/login/')
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/login/')
