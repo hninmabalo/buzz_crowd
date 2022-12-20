@@ -32,6 +32,8 @@ Buzz Crowd social media app
 
 # **Built With**
 * [Heroku](https://dashboard.heroku.com/apps)
+* Django 
+* Python 
 
 
 # **ERD**
@@ -39,17 +41,17 @@ Buzz Crowd social media app
 
 # **Wireframes**
 * Home Page
-* ![Wireframes](/img/Buzz%20Crowd%20Home%20Page.png)
+![Wireframes](/img/Buzz%20Crowd%20Home%20Page.png)
 * Singup/ Login Page
-* ![Wireframes](/img/Buzz%20Crowd%20Signup%3ALogin%20page.png)
+![Wireframes](/img/Buzz%20Crowd%20Signup%3ALogin%20page.png)
 * Profile page
-* ![Wireframes](/img/Buzz%20Crowd%20Profile%20Page.png)
+![Wireframes](/img/Buzz%20Crowd%20Profile%20Page.png)
 
 # **Screen**
 * Login Screen
-* ![Screen](/img/Buzz%20Crowd%20Login%20Screen.png)
+![Screen](/img/Buzz%20Crowd%20Login%20Screen.png)
 * Home Screen
-* ![Screen](/img/Buzz%20Crowd%20Home%20Screen%20.png)
+![Screen](/img/Buzz%20Crowd%20Home%20Screen%20.png)
 
 # **Future Enhancements**
 * Ability for users to share posts
