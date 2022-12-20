@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
-from .models import Post, Profile
+from .models import Post, Profile, LikePost
 
 
 # Create your views here.
@@ -37,7 +37,28 @@ def create_post(request):
     else:
         return render(request, 'create.html')
 
-# @login_required
+@login_required(login_url='/login/')
+def like_post(request):
+  username = request.user.username
+  post_id = request.GET.get('post_id')
+
+  post = Post.objects.get(id=post_id)
+
+  like_filter = LikePost.objects.get(post_id=post_id, username=username).first()
+
+  if like_filter == None:
+    new_like = LikePost.objects.create(post_id=post_id, username=username)
+    new_like.save()
+    post.likes = post.likes+1
+    post.save()
+    return HttpResponseRedirect('/')
+  else:
+    like_filter.delete()
+    post.likes = post.likes-1
+    post.save()
+    return HttpResponseRedirect('/')
+
+@login_required(login_url='/login/')
 def edit(request):
 
   user_profile = Profile.objects.get(user=request.user)
