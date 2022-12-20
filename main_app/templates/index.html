@@ -40,94 +40,131 @@
 
 <div class="container m-auto">
 
+  <!--<h1 class="lg:text-2xl text-lg font-extrabold leading-none text-gray-900 tracking-tight mb-5"> Feed </h1>--->
 
   <div class="lg:flex justify-center lg:space-x-10 lg:space-y-0 space-y-5">
 
-    <!-- left sidebar-->
-    <div class="space-y-5 flex-shrink-0 lg:w-7/12">
+      <!-- left sidebar-->
+      <div class="space-y-5 flex-shrink-0 lg:w-7/12">
 
+          <!-- post 1-->
 
-      {% for post in posts reversed %}
-      <div class="bg-white shadow rounded-md  -mx-2 lg:mx-0">
+          {% for post in posts reversed %}
+          <div class="bg-white shadow rounded-md  -mx-2 lg:mx-0">
+            <!-- post header-->
+            <div class="flex justify-between items-center px-4 py-3">
+              <div class="flex flex-1 items-center space-x-4">
+                <!-- <a href="/profile/{{post.user}}"> 
+    <img src="{{user_profile.profile_image.url}}" width="25px" height="25px" alt=""> </a> -->
+                <span class="block font-semibold "><a href="/profile/{{post.user}}">@{{post.user}}</a></span>
+              </div>
+             
+            </div>
+            <div uk-lightbox>
+              {% if post.image and post.content %} 
+              <a href="{{post.image}}">
+                <img src="{{post.image}}" alt="post_image">
+              </a>
+              <div class="py-3 px-4 space-y-3">
+                <p>{{post.content}}</p>
+             </div>
+              {% elif post.image and not post.content %}
+              <a href="{{post.image}}">
+                <img src="{{post.image}}" alt="post_image">
+              </a>
+              {% elif post.content and not post.image %}
+              <div class="py-3 px-4 space-y-3">
+                <p>{{post.content}}</p>
+             </div>
+              {% endif %}
+              
+            </div>
+    
+              
 
-        <!-- post header-->
-        <div class="flex justify-between items-center px-4 py-3">
-          <div class="flex flex-1 items-center space-x-4">
-<img src="{{user_profile.profile_image.url}}" width="25px" height="25px" alt="">
-            <span class="block font-semibold "><a href="/profile/{{post.user}}">@{{post.user}}</a></span>
-          </div>
-         
-        </div>
+              <div class="py-3 px-4 space-y-3"> 
+                 
+                  <div class="flex space-x-4 lg:font-bold">
+                      <a href="/like?post_id={{post.id}}" class="flex items-center space-x-2">
+                          <div class="p-2 rounded-full text-black">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="25" height="25" class="">
+                                  <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                              </svg>
+                              {% if post.likes == 0 %}
+                              <p>0 Like</p>
+                              {% elif post.no_of_likes == 1 %}
+                              <p>Liked by {{post.likes}} person</p>
+                              {% else %}
+                              <p>Liked by {{post.likes}} people</p>
+                              {% endif %}
+                          </div>
+                          
+                      </a>
+                     
+                    
+                  </div>
+                  
 
-        <div uk-lightbox>
+                  <p>
+                      <a href="/profile/{{post.user}}"><strong>{{post.user}}</strong></a> {{post.caption}}
+                  </p>
 
-          {% if post.image and post.content %} 
-          <a href="{{post.image}}">
-            <img src="{{post.image}}" alt="post_image">
-          </a>
-          <div class="py-3 px-4 space-y-3">
-            <p>{{post.content}}</p>
-         </div>
-          {% elif post.image and not post.content %}
-          <a href="{{post.image}}">
-            <img src="{{post.image}}" alt="post_image">
-          </a>
-          {% elif post.content and not post.image %}
-          <div class="py-3 px-4 space-y-3">
-            <p>{{post.content}}</p>
-         </div>
-          {% endif %}
-          
-
-        </div>
-
-
-        <div class="py-3 px-4 space-y-3">
-
-          <div class="flex space-x-4 lg:font-bold">
-            <a href="/like?post_id={{post.id}}" class="flex items-center space-x-2">
-              <div class="p-2 rounded-full text-black">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="25" height="25"
-                  class="">
-                  <path
-                    d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-                </svg>
-                {% if post.likes == 0 %}
-                <p></p>
-                {% elif post.likes == 1 %}
-                <p>Liked by {{ post.likes }} person</p>
-                {% else %}
-                <p>Liked by {{ post.likes }} people</p>
-                {% endif %}
               </div>
 
-            </a>
-
-  
           </div>
+          {% endfor %}
 
-        </div>
+          
+
 
       </div>
-      {% endfor %}
+
+      <!-- right sidebar-->
+      <div class="lg:w-5/12">
+
+          <div class="bg-white  shadow-md rounded-md overflow-hidden">
+
+              <div class="bg-gray-50  border-b border-gray-100 flex items-baseline justify-between py-4 px-6 ">
+                  <h2 class="font-semibold text-lg">Other Users</h2>
+                  <!-- <a href="#"> Refresh</a> -->
+              </div>
+             
+              <div class="divide-gray-300 divide-gray-50 divide-opacity-50 divide-y px-4 ">
+
+                  {% for suggestion in suggestions_username_profile_list %}
+                  <div class="flex items-center justify-between py-3">
+                      <div class="flex flex-1 items-center space-x-4">
+                          <a href="/profile/{{suggestion.user}}">
+                              <img src="{{suggestion.profile_image.url}}" class="bg-gray-200 rounded-full w-10 h-10">
+                          </a>
+                          <div class="flex flex-col">
+                              <span class="block capitalize font-semibold"> {{suggestion.user}} </span>
+                              <span class="block capitalize text-sm"> {{suggestion.bio}} </span>
+                          </div>
+                      </div>
+                      
+                      <a href="/profile/{{suggestion.user}}" class="btn btn-info"> View User </a>
+                  </div>
+                  {% endfor %}
+
+              </div>
+
+          </div>
+
+        
+
+      </div>
+
+  </div>               
 
 
+</div>
 
-
-    </div>
-
-
-
-
-  </div>
+</div>
 
 </div>
 
 
-</div>
 
-</div>
-
-</div>
 
 {% endblock content %}

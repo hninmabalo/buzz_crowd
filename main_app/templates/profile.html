@@ -22,13 +22,15 @@
             <div class="row">
                 <div class="col-md-4 col-sm-5">
                     <div class="thumbnail">
+                        {% csrf_token %}
+                        
                       {% if profile.profile_image %}
-                        <img src="{{ user_profile.profile_image.url }}" width="210px" alt="Profile Picture">
+                        <img src="{{ user_profile.profile_image }}" width="210px" alt="Profile Picture">
                                             {% else %}
                                              <img src="/media/blank_profile.png" width="210px" alt="Profile Picture">
                                             {% endif %}
                        
-                    </div> <!-- /.thumbnail -->
+                    </div> 
                     <br>
                     <div class="list-group">
                         <a href="#" class="list-group-item">
@@ -54,11 +56,13 @@
 
 
                 <div class="col-md-8 col-sm-7">
-                    <h2>{{ profile.nickname }}</h2>
-                    <h4>Bio : {{ profile.bio }}</h4>
-                    <h4>Pronouns : {{ profile.pronouns }}</h4>
-                    <h4>Location : {{ profile.location }}</h4>
+                    
+                    <h2>{{user_profile.user.username}}</h2>
+                    <h4>Bio : {{ user_profile.user.bio }}</h4>
+                    <h4>Pronouns : {{ user_profile.pronouns }}</h4>
+                    <h4>Location : {{ user_profile.location }}</h4>
                     <hr>
+                    
                     <p>
                         <a href="/profiles/{{ profile.id }}" class="btn btn-success">Follow {{ profile.nickname }}</a>
                         &nbsp;&nbsp;
@@ -87,8 +91,8 @@
             </ul>
         </div>
     </div>
-    <div class="col-lg-3">
-    
+ 
+  
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>
