@@ -19,6 +19,7 @@ Buzz Crowd social media app
     <li><a href="#ERD">ERD</a></li>
     <li><a href="#Wireframes">Wireframes</a></li>
     <li><a href="#Screen">Screen</a></li>
+    <li><a href="#Code">Code</a></li>
      <li><a href="#future-enhancements">Future Enhancements</a></li>
      <li><a href="#Credits">Credits</a></li>
 
@@ -52,6 +53,46 @@ Buzz Crowd social media app
 ![Screen](/img/Buzz%20Crowd%20Login%20Screen.png)
 * Home Screen
 ![Screen](/img/Buzz%20Crowd%20Home%20Screen%20.png)
+
+# **Code**
+* Login View
+```python
+def login(request):
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = auth.authenticate(username=username, password=password)
+
+        if user is not None:
+          auth.login(request, user)
+          return HttpResponseRedirect('/')
+        else:
+          messages.info(request, 'Invalid User')
+          return HttpResponseRedirect('/login/')   
+
+    else:
+        return render(request, 'login.html')
+```
+
+* Create Post with login required
+```python
+@login_required(login_url='/login/')
+def create_post(request):
+
+    if request.method == 'POST':
+        user = request.user.username
+        image = request.FILES.get('image_upload')
+        content = request.POST['content']
+
+        new_post = Post.objects.create(user=user, image=image, content=content)
+        new_post.save()
+
+        return HttpResponseRedirect('/')
+    else:
+        return render(request, 'create.html')
+```
 
 # **Future Enhancements**
 * Ability for users to share posts
