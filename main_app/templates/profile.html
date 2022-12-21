@@ -15,7 +15,6 @@
 </head>
 
 <body>
-   
   
     <div class="container bootstrap snippets bootdey">
         <div class="col-md-9">
@@ -23,9 +22,9 @@
                 <div class="col-md-4 col-sm-5">
                     <div class="thumbnail">
                         {% csrf_token %}
-                        
+                       
                       {% if profile.profile_image %}
-                        <img src="{{ user_profile.profile_image }}" width="210px" alt="Profile Picture">
+                        <img src="{{user_profile.profile_image.url}}" width="210px" alt="Profile Picture">
                                             {% else %}
                                              <img src="/media/blank_profile.png" width="210px" alt="Profile Picture">
                                             {% endif %}
@@ -66,7 +65,8 @@
                     <p>
                         <a href="/profiles/{{ profile.id }}" class="btn btn-success">Follow {{ profile.nickname }}</a>
                         &nbsp;&nbsp;
-                        <a href="/" class="btn btn-info">Send Message</a>
+                        <a href="#" class="btn btn-info">Send Message</a>
+                        <a href="/" class="btn btn-secondary">Back to New Feeds</a>
                     </p>
                     <hr>
 
